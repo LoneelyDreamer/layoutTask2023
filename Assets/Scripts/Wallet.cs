@@ -13,6 +13,7 @@ public class Wallet : MonoBehaviour
 
     private void Awake()
     {
+       PlayerPrefs.DeleteAll();
         Instance = this;
         if(!PlayerPrefs.HasKey(TICKETS))
         {

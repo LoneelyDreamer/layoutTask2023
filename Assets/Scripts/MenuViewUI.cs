@@ -37,5 +37,5 @@ public class MenuViewUI : MonoBehaviour
     public void UpdateView()
     {
         ticketsNumber.text = Wallet.Instance.GetTicketsCash().ToString();
-    }
+    }    
 }

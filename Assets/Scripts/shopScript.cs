@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -35,12 +32,12 @@ public class shopScript : MonoBehaviour, IStoreListener
 
     public void BuyLuckyChestButtonPresd()
     {
-        m_storeController.InitiatePurchase(epicChestItem.Id);
+        m_storeController.InitiatePurchase(luckyChestItem.Id);
     }
 
     public void BuyEpicChestButtonPresd()
     {
-        m_storeController.InitiatePurchase(luckyChestItem.Id);
+        m_storeController.InitiatePurchase(epicChestItem.Id);
     }
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {

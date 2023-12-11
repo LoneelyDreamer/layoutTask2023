@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class DayilyBonusUI : MonoBehaviour
 {
+    public event EventHandler OnTakePrize;
+
     [SerializeField] private Button dayBonusButton1;
     [SerializeField] private Button dayBonusButton2;
     [SerializeField] private Button dayBonusButton3;
@@ -16,6 +19,7 @@ public class DayilyBonusUI : MonoBehaviour
 
     [SerializeField] private Transform cangratsView;
     [SerializeField] private CongratsUI congratsUI;
+    [SerializeField] private Daily daily;
 
     private int ticketsNumber;
     private int dayNumber;
@@ -36,8 +40,10 @@ public class DayilyBonusUI : MonoBehaviour
     {
         ticketsNumber = dayBonusButton.GetComponent<DayliGift>().GetTicketsNumber();
         dayNumber = dayBonusButton.GetComponent<DayliGift>().GetDayOfWeek();
+        daily.GetReword(dayNumber, dayBonusButton.GetComponent<DayliGift>());
         SetCongratsScene();
         AddTicketsInWallet();
+        OnTakePrize?.Invoke(this, EventArgs.Empty);
     }
     private void SetCongratsScene()
     {

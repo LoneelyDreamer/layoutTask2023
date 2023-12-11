@@ -35,6 +35,7 @@ public class LevelsView : MonoBehaviour
     [SerializeField] private Button menuButton;
 
     private int nextLevel = 1;
+    private const string NEXTLAVEL = "nextLevel";
 
     private void Awake()
     {
@@ -64,6 +65,11 @@ public class LevelsView : MonoBehaviour
         menuButton.onClick.AddListener(() => Hide());
     }
 
+    private void Start()
+    {
+        nextLevel = PlayerPrefs.GetInt(NEXTLAVEL);
+        UnlockAllSaveLavels();
+    }
     private void Hide()
     {
         gameObject.SetActive(false);
@@ -74,12 +80,21 @@ public class LevelsView : MonoBehaviour
         Lavel lavel = lavelButton.GetComponent<Lavel>();
 
         nextLevel = lavel.GetLavel();
+        PlayerPrefs.SetInt(NEXTLAVEL, nextLevel);
 
         if (nextLevel < _levels.Count && _levels[nextLevel - 1].IsOpen())
         {
             _levels[nextLevel].OpenLavel();
         }
         OnLevelPassed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void UnlockAllSaveLavels()
+    {
+        for (int i = 0; i <= nextLevel; i++)
+        {
+            _levels[i].OpenLavel();
+        }
     }
 
     public int GetCurrentLavel()
