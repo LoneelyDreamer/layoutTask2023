@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.Purchasing; //библиотека с покупками, будет доступна когда активируем сервисы
+using UnityEngine.Purchasing.Extension;
 
-public class IAPCore : MonoBehaviour, IStoreListener //для получения сообщений из Unity Purchasing
+public class IAPCore : MonoBehaviour, IDetailedStoreListener //для получения сообщений из Unity Purchasing
 {
     //[SerializeField] private GameObject panelAds;
     //[SerializeField] private GameObject panelVIP;
@@ -24,6 +25,8 @@ public class IAPCore : MonoBehaviour, IStoreListener //для получения сообщений и
         {
             InitializePurchasing();
         }
+
+       
     }
 
     public void InitializePurchasing()
@@ -213,5 +216,10 @@ public class IAPCore : MonoBehaviour, IStoreListener //для получения сообщений и
     public void OnInitializeFailed(InitializationFailureReason error, string message)
     {
         Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
+    {
+        Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureDescription));
     }
 }
