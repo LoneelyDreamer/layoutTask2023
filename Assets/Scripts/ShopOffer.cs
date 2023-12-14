@@ -17,6 +17,17 @@ public class ShopOffer : MonoBehaviour
     [SerializeField] private bool isBuyed = false;
     [SerializeField] private int necessaryLavel;
 
+    private const string ISBUYED = "isBuyed";
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(ISBUYED))
+        {
+            lockButton();
+            ShowProduct();
+        }
+    }
+
     public int GetTicketsCost()
     {
         return costOfTickets;
@@ -40,7 +51,9 @@ public class ShopOffer : MonoBehaviour
 
         ticketsImage.gameObject.SetActive(false);
 
-        isBuyed = true;       
+        isBuyed = true;
+
+        PlayerPrefs.SetInt(ISBUYED, 1);
     }
 
     public void ShowProduct()

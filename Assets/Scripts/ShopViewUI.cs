@@ -33,13 +33,14 @@ public class ShopViewUI : MonoBehaviour
         levelsView.OnLevelPassed += LevelsView_OnLevelPassed;
     }
 
+    private void Start()
+    {
+        CheaNecessaryLavel();
+    }
+
     private void LevelsView_OnLevelPassed(object sender, System.EventArgs e)
     {
-        foreach (ShopOffer offer in shopOffers)
-        {
-            if (levelsView.GetCurrentLavel() < offer.GetNecessaryLavel()) return;
-            offer.ShowProduct();
-        }
+        CheaNecessaryLavel();
     }
 
     private void Buy(Button button)
@@ -59,5 +60,14 @@ public class ShopViewUI : MonoBehaviour
     private void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public void CheaNecessaryLavel()
+    {
+        foreach (ShopOffer offer in shopOffers)
+        {
+            if (levelsView.GetCurrentLavel() < offer.GetNecessaryLavel()) return;
+            offer.ShowProduct();
+        }
     }
 }
