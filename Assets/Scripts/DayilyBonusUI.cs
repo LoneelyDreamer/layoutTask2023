@@ -34,6 +34,7 @@ public class DayilyBonusUI : MonoBehaviour
         dayBonusButton6.onClick.AddListener(() => TakePrize(dayBonusButton6));
 
         retornToMenuButton.onClick.AddListener(() => Hide());
+        Hide();
     }
 
     private void TakePrize(Button dayBonusButton)

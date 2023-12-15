@@ -63,11 +63,13 @@ public class LevelsView : MonoBehaviour
         lavelButton20.onClick.AddListener(() => PassLavel(lavelButton20));
 
         menuButton.onClick.AddListener(() => Hide());
+
+        nextLevel = PlayerPrefs.GetInt(NEXTLAVEL);
+        Hide();
     }
 
     private void Start()
-    {
-        nextLevel = PlayerPrefs.GetInt(NEXTLAVEL);
+    {       
         UnlockAllSaveLavels();
     }
     private void Hide()
@@ -101,6 +103,7 @@ public class LevelsView : MonoBehaviour
     {
         return nextLevel;
     }
+
 
   
 

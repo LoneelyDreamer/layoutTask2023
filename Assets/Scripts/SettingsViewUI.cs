@@ -20,6 +20,7 @@ public class SettingsViewUI : MonoBehaviour
         });
         volumeOffButton.onClick.AddListener(() => audioSource.Pause());
         retornToMenuButton.onClick.AddListener(() => Hide());
+        Hide();
     }
     public void Hide()
     {

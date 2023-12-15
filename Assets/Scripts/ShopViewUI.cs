@@ -31,16 +31,17 @@ public class ShopViewUI : MonoBehaviour
 
         wallet = Wallet.Instance;
         levelsView.OnLevelPassed += LevelsView_OnLevelPassed;
+        Hide();
     }
 
     private void Start()
     {
-        CheaNecessaryLavel();
+        CheakNecessaryLavel();
     }
 
     private void LevelsView_OnLevelPassed(object sender, System.EventArgs e)
     {
-        CheaNecessaryLavel();
+        CheakNecessaryLavel();
     }
 
     private void Buy(Button button)
@@ -62,8 +63,9 @@ public class ShopViewUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void CheaNecessaryLavel()
+    public void CheakNecessaryLavel()
     {
+        print("cheak");
         foreach (ShopOffer offer in shopOffers)
         {
             if (levelsView.GetCurrentLavel() < offer.GetNecessaryLavel()) return;
